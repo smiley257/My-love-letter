@@ -1,79 +1,115 @@
-<!DOCTYPE html><html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Love Letter</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Love Letter 💌</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Georgia', serif;
-      background-color: #ffe6f0; /* pastel pink */
+      background-color: #ffe6f0;
+      font-family: 'Courier New', cursive;
       overflow: hidden;
-    }.container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.envelope {
-  width: 200px;
-  height: 150px;
-  background-color: #fff;
-  border: 2px solid #ffb6c1;
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  color: #ff69b4;
-  transition: transform 0.3s ease;
-}
-
-.envelope:hover {
-  transform: scale(1.05);
-}
-
-.letter {
-  display: none;
-  max-height: 80vh;
-  overflow-y: auto;
-  padding: 20px;
-  background-color: #fff0f5;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 600px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-}
-
-.letter h2 {
-  margin-top: 0;
-}
-
-.visible {
-  display: block;
-}
-
-  </style>
-</head><body>
-  <div class="container">
-    <div class="envelope" onclick="openLetter()" id="envelope">
-      ✨
-    </div>
-    <div class="letter" id="letter">
-      <h2>Dear Pranav,</h2>
-      <p>I feel the happiest when I'm with you and so I would love to do anything and go out of my way to see that perfect beautiful smile of yours. Today, I told the stars about you and I figured that the stars would be so proud that their atoms made someone like you.</p>
-      <p>In this world, there's black and there's white. While grey is in between them. But if you ask me, there's death and there's life. But what lies between them are those beautiful black eyes of yours.</p>
-      <p>I love you to the moon and back. ❤️</p>
-      <p>Yours truly,<br>Stuti</p>
-    </div>
-  </div>  <script>
-    function openLetter() {
-      document.getElementById('envelope').style.display = 'none';
-      document.getElementById('letter').classList.add('visible');
-      document.body.style.overflow = 'auto';
     }
-  </script></body></html>
+
+    .envelope-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      transition: all 1s ease-in-out;
+    }
+
+    .tap-text {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 1s infinite alternate;
+    }
+
+    .envelope {
+      width: 200px;
+      height: 130px;
+      background: #ffccdd;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.8s ease;
+    }
+
+    .envelope::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-bottom: 65px solid #ffb6c1;
+      top: -65px;
+      left: 0;
+    }
+
+    .emoji-star {
+      font-size: 1.5rem;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .letter {
+      display: none;
+      padding: 2rem;
+      height: 100vh;
+      overflow-y: auto;
+      color: #333;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .open .envelope {
+      transform: rotateX(180deg) scale(0.1);
+      opacity: 0;
+    }
+
+    .open .tap-text, .open .emoji-star {
+      display: none;
+    }
+
+    .open .letter {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope-container" id="container">
+    <div class="tap-text">✨ Tap to Open</div>
+    <div class="emoji-star">✨</div>
+    <div class="envelope" onclick="openLetter()"></div>
+    <div class="letter">
+      <p>Dear love,</p>
+      <p>
+        I feel the happiest when I'm with you and so I would love to do anything and go out of my way to see that perfect beautiful smile of yours.
+        Today, I told the stars about you and I figured that the stars would be so proud that their atoms made someone like you.
+      </p>
+      <p>
+        In this world, there's black and there's white. While grey is in between them.
+        But if you ask me — there's death and there's life. But what lies between them are those beautiful black eyes of yours.
+      </p>
+      <p>I love you to the moon n back. ❤️</p>
+      <p style="text-align:right;">— Stuti</p>
+    </div>
+  </div>
+
+  <script>
+    function openLetter() {
+      document.getElementById('container').classList.add('open');
+      document.body.style.overflow = 'auto'; // enable scroll
+    }
+  </script>
+</body
